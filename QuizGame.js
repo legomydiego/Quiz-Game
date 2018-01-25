@@ -15,17 +15,27 @@ var fourth = new Question('What has been the best trip I have taken?',['Spain','
 var questionArray = [first,second,third,fourth];
 
 var score = 0;
+var response;
 
 while(response!=='exit') {
     var questionIndex = Math.floor(Math.random()*4);
+    askQuestion();
+    checkAnswer();
+}
+
+function askQuestion () {
+    
     console.log(questionArray[questionIndex].question);
     
     for(i=0;i<questionArray[questionIndex].answers.length;i++) {
         console.log((i+1) + ' ' + questionArray[questionIndex].answers[i]);
     }
-    var response = prompt('What\'s the answer?');
+}
+
+function checkAnswer () {
+    response = prompt('What\'s the answer?');
     if(response === 'exit') {
-        break;
+        response = 'exit';
     } else if(Number(response) === questionArray[questionIndex].correctAnswer) {
         console.log('That is correct!')
         score++;

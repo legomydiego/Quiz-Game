@@ -3,7 +3,7 @@ function Question(question, answers, correctAnswer) {
     this.answers = answers,
     this.correctAnswer = correctAnswer
     runGame = function(){
-        console.log(questionArray[questionIndex]);
+        return questionArray[questionIndex];
     }
 }
 
@@ -14,6 +14,24 @@ var fourth = new Question('What has been the best trip I have taken?',['Spain','
 
 var questionArray = [first,second,third,fourth];
 
-var questionIndex = Math.floor(Math.random()*4);
+var score = 0;
 
-Question.runGame();
+while(response!=='exit') {
+    var questionIndex = Math.floor(Math.random()*4);
+    console.log(questionArray[questionIndex].question);
+    
+    for(i=0;i<questionArray[questionIndex].answers.length;i++) {
+        console.log((i+1) + ' ' + questionArray[questionIndex].answers[i]);
+    }
+    var response = prompt('What\'s the answer?');
+    if(response === 'exit') {
+        break;
+    } else if(Number(response) === questionArray[questionIndex].correctAnswer) {
+        console.log('That is correct!')
+        score++;
+        console.log(`Your current score is ${score}`);
+    } else {
+        console.log('Sorry wrong answer');
+        console.log(`Your current score is ${score}`);
+    }
+}
